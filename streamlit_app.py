@@ -7,6 +7,10 @@ import snowflake.connector
 
 
 
+fruit_choices = streamlit.text_input('What fruit would you like information about?')
+streamlit.write('The user entered ', fruit_choices)
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" +fruit_choices)
+
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT * FROM FRUIT_LOAD_LIST")
@@ -14,9 +18,6 @@ my_data_rows = my_cur.fetchall()
 streamlit.header("FOOD LIST")
 streamlit.dataframe(my_data_rows)
 
-fruit_choices = streamlit.text_input('What fruit would you like information about?')
-streamlit.write('The user entered ', fruit_choices)
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" +fruit_choices)
 
 
 # fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
