@@ -10,6 +10,7 @@ import snowflake.connector
 fruit_choices = streamlit.text_input('What fruit would you like information about?')
 streamlit.write('The user entered ', fruit_choices)
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" +fruit_choices)
+my_cur.execute("insert into FROM FRUIT_LOAD_LIST(fruit_choices)")
 
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
