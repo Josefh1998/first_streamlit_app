@@ -7,6 +7,15 @@ import requests
 streamlit.header("Fruityvice Fruit Advice!")
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
 streamlit.text(fruityvice_response.json())
+fruits_selected = streamlit.multiselect(list(my_fruit_list.index))
+fruits_to_show = my_fruit_list.loc[fruits_selected]
+
+# my_fruit_list = my_fruit_list.set_index('Fruit')
+# # Let's put a pick list here so they can pick the fruit they want to include 
+# fruits_selected = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index),['Avocado','Strawberries'])
+# fruits_to_show = my_fruit_list.loc[fruits_selected]
+
+
 # streamlit.title('My Parents New Healthy Diner')
 
 # streamlit.header('Breakfast Menu')
